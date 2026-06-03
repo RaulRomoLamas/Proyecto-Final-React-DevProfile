@@ -1,0 +1,23 @@
+/* Base preparada para activar modo oscuro en una etapa posterior. */
+body.dark-mode {
+  --color-background: #111827;
+  --color-surface: #1f2937;
+  --color-text: #f9fafb;
+  --color-muted: #cbd5e1;
+  --color-border: #334155;
+}
+
+body.dark-mode .navbar {
+  background: rgba(17, 24, 39, 0.92);
+}
+
+body.dark-mode .navbar-link:hover,
+body.dark-mode .navbar-link.active {
+  background: #1e3a8a;
+  color: #ffffff;
+}
+
+body.dark-mode .theme-toggle {
+  background: #334155;
+  color: #ffffff;
+}
