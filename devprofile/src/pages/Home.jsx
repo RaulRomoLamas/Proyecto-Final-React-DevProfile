@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useCV } from '../context/CVContext'
 
 function Home() {
+  const { cvData } = useCV()
+
   return (
     <section className="page hero-section">
       <div className="hero-content">
@@ -14,6 +17,13 @@ function Home() {
         <Link className="button primary-button" to="/editor">
           Ir al editor
         </Link>
+
+        <div className="stats-grid" aria-label="Resumen temporal del CV">
+          <p>Habilidades registradas: {cvData.skills.length}</p>
+          <p>Proyectos registrados: {cvData.projects.length}</p>
+          <p>Educación registrada: {cvData.education.length}</p>
+          <p>Idiomas registrados: {cvData.languages.length}</p>
+        </div>
       </div>
     </section>
   )

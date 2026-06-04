@@ -21,3 +21,8 @@ body.dark-mode .theme-toggle {
   background: #334155;
   color: #ffffff;
 }
+
+body.dark-mode .secondary-button {
+  background: #334155;
+  color: #ffffff;
+}
