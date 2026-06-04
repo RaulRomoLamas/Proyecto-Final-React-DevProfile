@@ -121,6 +121,15 @@ button {
   background: #cbd5e1;
 }
 
+.danger-button {
+  background: #fee2e2;
+  color: #b42318;
+}
+
+.danger-button:hover {
+  background: #fecaca;
+}
+
 .main-layout {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
@@ -236,7 +245,8 @@ button {
 }
 
 .form-field input,
-.form-field textarea {
+.form-field textarea,
+.form-field select {
   width: 100%;
   padding: 0.9rem 1rem;
   background: #f8fbff;
@@ -250,7 +260,8 @@ button {
 }
 
 .form-field input:focus,
-.form-field textarea:focus {
+.form-field textarea:focus,
+.form-field select:focus {
   outline: none;
   border-color: var(--color-primary);
   background: #ffffff;
@@ -348,6 +359,98 @@ button {
   gap: 1rem;
 }
 
+.skills-section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.skills-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.empty-state {
+  text-align: center;
+}
+
+.empty-state p {
+  max-width: none;
+}
+
+.skill-form-card,
+.skill-card {
+  border-radius: 12px;
+}
+
+.skill-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.skill-card-header h3 {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.skill-category {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.skill-level-badge {
+  padding: 0.35rem 0.7rem;
+  background: #e8f0ff;
+  border-radius: 999px;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.skill-level {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.skill-level-track {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  background: #e2e8f0;
+  border-radius: 999px;
+}
+
+.skill-level-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+  border-radius: inherit;
+}
+
+.skill-level p,
+.skill-description {
+  color: var(--color-muted);
+}
+
+.skill-description {
+  max-width: none;
+}
+
+.skill-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .stats-grid {
   display: grid;
   gap: 0.75rem;
@@ -383,13 +486,16 @@ button {
   .stats-grid,
   .form-grid,
   .avatar-grid,
-  .form-actions {
+  .form-actions,
+  .skills-list,
+  .skill-card-actions {
     width: 100%;
   }
 
   .stats-grid,
   .form-grid,
-  .avatar-grid {
+  .avatar-grid,
+  .skills-list {
     grid-template-columns: 1fr;
   }
 
@@ -399,6 +505,14 @@ button {
   }
 
   .form-actions .button {
+    width: 100%;
+  }
+
+  .skill-card-header {
+    flex-direction: column;
+  }
+
+  .skill-card-actions .button {
     width: 100%;
   }
 }

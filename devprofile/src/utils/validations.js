@@ -29,3 +29,32 @@ export function validateImageUrl(value) {
 
   return validateUrl(value)
 }
+
+export function validateOneOf(value, options = []) {
+  return options.includes(value)
+}
+
+export function validateNumberRange(value, min, max) {
+  const numericValue = Number(value)
+
+  return Number.isFinite(numericValue) && numericValue >= min && numericValue <= max
+}
+
+export function normalizeComparableText(value) {
+  return String(value ?? '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .toLowerCase()
+}
+
+export function validateUniqueSkillName(name, skills = [], currentId = null) {
+  const normalizedName = normalizeComparableText(name)
+
+  return !skills.some((skill) => {
+    if (skill.id === currentId) {
+      return false
+    }
+
+    return normalizeComparableText(skill.name) === normalizedName
+  })
+}
