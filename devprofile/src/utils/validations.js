@@ -58,3 +58,15 @@ export function validateUniqueSkillName(name, skills = [], currentId = null) {
     return normalizeComparableText(skill.name) === normalizedName
   })
 }
+
+export function validateUniqueProjectName(name, projects = [], currentId = null) {
+  const normalizedName = normalizeComparableText(name)
+
+  return !projects.some((project) => {
+    if (project.id === currentId) {
+      return false
+    }
+
+    return normalizeComparableText(project.name) === normalizedName
+  })
+}
