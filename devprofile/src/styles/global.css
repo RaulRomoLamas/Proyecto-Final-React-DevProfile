@@ -467,6 +467,95 @@ button {
   box-shadow: var(--shadow-soft);
 }
 
+.dashboard-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.dashboard-header {
+  gap: 0.65rem;
+}
+
+.dashboard-summary {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.summary-card {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  min-height: 130px;
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.summary-card span {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.summary-card strong {
+  color: var(--color-text);
+  font-size: 1.8rem;
+  line-height: 1.15;
+}
+
+.summary-card small {
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.skill-chart-card {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.skill-chart-header {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.skill-chart-header h2 {
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.skill-chart-header p {
+  color: var(--color-muted);
+}
+
+.skill-chart-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+}
+
+.skill-chart-inner {
+  min-width: 100%;
+}
+
+.dashboard-empty-state {
+  justify-items: center;
+  text-align: center;
+}
+
+.dashboard-empty-state p {
+  max-width: 680px;
+}
+
 @media (max-width: 760px) {
   .navbar {
     align-items: stretch;
@@ -484,6 +573,7 @@ button {
   .demo-actions,
   .demo-actions .button,
   .stats-grid,
+  .dashboard-summary,
   .form-grid,
   .avatar-grid,
   .form-actions,
@@ -493,6 +583,7 @@ button {
   }
 
   .stats-grid,
+  .dashboard-summary,
   .form-grid,
   .avatar-grid,
   .skills-list {
@@ -514,5 +605,11 @@ button {
 
   .skill-card-actions .button {
     width: 100%;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1020px) {
+  .dashboard-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
