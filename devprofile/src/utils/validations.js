@@ -70,3 +70,27 @@ export function validateUniqueProjectName(name, projects = [], currentId = null)
     return normalizeComparableText(project.name) === normalizedName
   })
 }
+
+export function validateUniqueEducationProgram(program, education = [], currentId = null) {
+  const normalizedProgram = normalizeComparableText(program)
+
+  return !education.some((educationItem) => {
+    if (educationItem.id === currentId) {
+      return false
+    }
+
+    return normalizeComparableText(educationItem.program) === normalizedProgram
+  })
+}
+
+export function validateUniqueLanguageName(name, languages = [], currentId = null) {
+  const normalizedName = normalizeComparableText(name)
+
+  return !languages.some((language) => {
+    if (language.id === currentId) {
+      return false
+    }
+
+    return normalizeComparableText(language.name) === normalizedName
+  })
+}
