@@ -1,14 +1,31 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CVPreview from '../components/CVPreview'
 import { useCV } from '../context/CVContext'
+import { generatePDF } from '../utils/pdfGenerator'
 
 const hasValue = (value) => String(value ?? '').trim().length > 0
 
 function Preview() {
   const { cvData } = useCV()
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [pdfError, setPdfError] = useState('')
   const personal = cvData.personal ?? {}
   const hasMinimumData =
     hasValue(personal.name) && hasValue(personal.profession) && hasValue(personal.email)
+
+  const handleExportPDF = async () => {
+    setIsGenerating(true)
+    setPdfError('')
+
+    try {
+      await generatePDF(cvData)
+    } catch {
+      setPdfError('No se pudo generar el PDF. Revisa los datos e intenta de nuevo.')
+    } finally {
+      setIsGenerating(false)
+    }
+  }
 
   return (
     <section className="page preview-page">
@@ -22,10 +39,16 @@ function Preview() {
           <Link className="button secondary-button" to="/editor">
             Ir al editor
           </Link>
-          <button className="button primary-button" type="button" disabled>
-            Exportar a PDF
+          <button
+            className="button primary-button"
+            type="button"
+            onClick={handleExportPDF}
+            disabled={!hasMinimumData || isGenerating}
+          >
+            {isGenerating ? 'Generando PDF...' : 'Exportar a PDF'}
           </button>
         </div>
+        {pdfError ? <p className="form-error preview-error">{pdfError}</p> : null}
       </header>
 
       {hasMinimumData ? (

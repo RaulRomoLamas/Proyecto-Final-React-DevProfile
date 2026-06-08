@@ -658,6 +658,10 @@ button {
   justify-content: flex-end;
 }
 
+.preview-error {
+  grid-column: 1 / -1;
+}
+
 .button:disabled {
   cursor: not-allowed;
   opacity: 0.65;
