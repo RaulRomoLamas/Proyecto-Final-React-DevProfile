@@ -1,16 +1,16 @@
 :root {
-  --bg: #f5f7fb;
+  --bg: #faf7ef;
   --card: #ffffff;
   --text: #172033;
-  --border: #dbe3ef;
-  --color-background: #f5f7fb;
+  --border: #e7dfd1;
+  --color-background: #faf7ef;
   --color-surface: #ffffff;
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
+  --color-primary: #a66f00;
+  --color-primary-dark: #7a4f00;
   --color-text: #172033;
-  --color-muted: #64748b;
-  --color-border: #dbe3ef;
-  --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.08);
+  --color-muted: #6f6a60;
+  --color-border: #e7dfd1;
+  --shadow-soft: 0 18px 50px rgba(68, 53, 22, 0.08);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', sans-serif;
@@ -85,7 +85,7 @@ button {
 
 .navbar-link:hover,
 .navbar-link.active {
-  background: #e8f0ff;
+  background: #fff1c2;
   color: var(--color-primary);
 }
 
@@ -102,13 +102,13 @@ button {
 }
 
 .theme-toggle {
-  background: #eef2f7;
+  background: #f4ead6;
   color: var(--color-text);
 }
 
 .primary-button {
   background: var(--color-primary);
-  color: #ffffff;
+  color: #172033;
   width: fit-content;
 }
 
@@ -117,12 +117,12 @@ button {
 }
 
 .secondary-button {
-  background: #e2e8f0;
+  background: #eee5d5;
   color: var(--color-text);
 }
 
 .secondary-button:hover {
-  background: #cbd5e1;
+  background: #e5d8c1;
 }
 
 .danger-button {
@@ -246,7 +246,7 @@ button {
 .form-field select {
   width: 100%;
   padding: 0.9rem 1rem;
-  background: #f8fbff;
+  background: #fffefa;
   border: 1px solid var(--color-border);
   border-radius: 10px;
   color: var(--color-text);
@@ -262,7 +262,7 @@ button {
   outline: none;
   border-color: var(--color-primary);
   background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 4px rgba(236, 190, 69, 0.22);
 }
 
 .form-field textarea {
@@ -285,7 +285,7 @@ button {
   display: grid;
   gap: 1rem;
   padding: 1.25rem;
-  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #fff6d8 0%, #ffffff 100%);
   border: 1px solid var(--color-border);
   border-radius: 12px;
 }
@@ -312,13 +312,13 @@ button {
 
 .avatar-option:hover {
   transform: translateY(-2px);
-  border-color: #b8cdf7;
-  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.12);
+  border-color: #e7b84c;
+  box-shadow: 0 14px 30px rgba(130, 91, 18, 0.12);
 }
 
 .avatar-option.selected {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(236, 190, 69, 0.24);
 }
 
 .avatar-option img,
@@ -327,7 +327,7 @@ button {
   height: 88px;
   object-fit: cover;
   border-radius: 999px;
-  background: #eef2f7;
+  background: #fff1c2;
 }
 
 .avatar-option span {
@@ -413,7 +413,7 @@ button {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  background: #eef2f7;
+  background: #fff1c2;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -452,7 +452,7 @@ button {
 .education-period {
   flex: 0 0 auto;
   padding: 0.35rem 0.7rem;
-  background: #e8f0ff;
+  background: #fff1c2;
   border-radius: 999px;
   color: var(--color-primary);
   font-weight: 800;
@@ -460,7 +460,7 @@ button {
 
 .skill-level-badge {
   padding: 0.35rem 0.7rem;
-  background: #e8f0ff;
+  background: #fff1c2;
   border-radius: 999px;
   color: var(--color-primary);
   font-weight: 800;
@@ -475,13 +475,13 @@ button {
   width: 100%;
   height: 10px;
   overflow: hidden;
-  background: #e2e8f0;
+  background: #efe3c6;
   border-radius: 999px;
 }
 
 .skill-level-fill {
   height: 100%;
-  background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+  background: linear-gradient(90deg, #edc85b 0%, #c99522 100%);
   border-radius: inherit;
 }
 
@@ -513,7 +513,7 @@ button {
   align-items: center;
   min-height: 38px;
   padding: 0.45rem 0.75rem;
-  background: #e8f0ff;
+  background: #fff1c2;
   border-radius: 8px;
   color: var(--color-primary);
   font-weight: 800;
@@ -521,7 +521,7 @@ button {
 
 .project-links a:hover,
 .education-links a:hover {
-  background: #dbeafe;
+  background: #f8dfa0;
 }
 
 .skill-card-actions,
@@ -696,7 +696,7 @@ button {
   width: 132px;
   height: 132px;
   object-fit: cover;
-  background: #eef2f7;
+  background: #fff1c2;
   border: 1px solid var(--color-border);
   border-radius: 999px;
 }
@@ -740,14 +740,14 @@ button {
   align-items: center;
   min-height: 36px;
   padding: 0.4rem 0.7rem;
-  background: #e8f0ff;
+  background: #fff1c2;
   border-radius: 8px;
   color: var(--color-primary);
   font-weight: 800;
 }
 
 .cv-preview-links a:hover {
-  background: #dbeafe;
+  background: #f8dfa0;
 }
 
 .cv-preview-section {
@@ -781,7 +781,7 @@ button {
   display: grid;
   gap: 0.75rem;
   padding: 1.25rem;
-  background: #f8fbff;
+  background: #fffefa;
   border: 1px solid var(--color-border);
   border-radius: 8px;
 }
@@ -812,13 +812,13 @@ button {
   width: 100%;
   height: 10px;
   overflow: hidden;
-  background: #e2e8f0;
+  background: #efe3c6;
   border-radius: 999px;
 }
 
 .cv-preview-level-fill {
   height: 100%;
-  background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+  background: linear-gradient(90deg, #edc85b 0%, #c99522 100%);
   border-radius: inherit;
 }
 
@@ -830,7 +830,7 @@ button {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  background: #eef2f7;
+  background: #fff1c2;
   border: 1px solid var(--color-border);
   border-radius: 8px;
 }
@@ -840,12 +840,12 @@ button {
 }
 
 .dark .cv-preview-links a {
-  background: #1e3a8a;
-  color: #ffffff;
+  background: #713f12;
+  color: #fff7d6;
 }
 
 .dark .cv-preview-links a:hover {
-  background: #1d4ed8;
+  background: #854d0e;
 }
 
 @media (max-width: 760px) {

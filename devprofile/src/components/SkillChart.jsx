@@ -62,7 +62,7 @@ function SkillChart() {
                 formatter={(value) => [`${value} de 100`, 'Nivel']}
                 labelFormatter={(label) => `Habilidad: ${label}`}
               />
-              <Bar dataKey="level" fill="#2563eb" name="Nivel" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="level" fill="#edc85b" name="Nivel" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
