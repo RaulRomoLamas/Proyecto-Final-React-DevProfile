@@ -30,6 +30,12 @@ export function validateImageUrl(value) {
   return validateUrl(value)
 }
 
+export function validateImageSource(value) {
+  if (!value) return true
+
+  return validateUrl(value) || String(value).startsWith('data:image/')
+}
+
 export function validateOneOf(value, options = []) {
   return options.includes(value)
 }

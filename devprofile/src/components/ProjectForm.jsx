@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useCV } from '../context/CVContext'
+import { imageFileToDataUrl } from '../utils/imageFiles'
 import {
+  validateImageSource,
   validateLength,
   validateRequired,
   validateUniqueProjectName,
@@ -54,8 +56,8 @@ function buildProjectErrors(formData, projects, currentProjectId) {
     errors.deployUrl = 'El enlace del deploy no es valido.'
   }
 
-  if (!validateUrl(formData.imageUrl)) {
-    errors.imageUrl = 'El enlace de la imagen no es valido.'
+  if (!validateImageSource(formData.imageUrl)) {
+    errors.imageUrl = 'La imagen del proyecto no es valida.'
   }
 
   return errors
@@ -93,6 +95,51 @@ function ProjectForm({ editingProject, projects, onFinishEditing }) {
   const handleCancel = () => {
     resetForm()
     onFinishEditing()
+  }
+
+  const handleProjectImageUpload = async (event) => {
+    const [file] = event.target.files
+
+    if (!file) {
+      return
+    }
+
+    try {
+      const imageUrl = await imageFileToDataUrl(file, {
+        maxWidth: 1200,
+        maxHeight: 800,
+        quality: 0.86,
+      })
+
+      setFormData((currentData) => ({
+        ...currentData,
+        imageUrl,
+      }))
+      setErrors((currentErrors) => ({
+        ...currentErrors,
+        imageUrl: '',
+      }))
+      setSuccessMessage('')
+    } catch (error) {
+      setErrors((currentErrors) => ({
+        ...currentErrors,
+        imageUrl: error.message,
+      }))
+    } finally {
+      event.target.value = ''
+    }
+  }
+
+  const handleRemoveProjectImage = () => {
+    setFormData((currentData) => ({
+      ...currentData,
+      imageUrl: '',
+    }))
+    setErrors((currentErrors) => ({
+      ...currentErrors,
+      imageUrl: '',
+    }))
+    setSuccessMessage('')
   }
 
   const handleSubmit = (event) => {
@@ -209,18 +256,32 @@ function ProjectForm({ editingProject, projects, onFinishEditing }) {
           </label>
 
           <label className="form-field form-field-full">
-            <span>Imagen o captura representativa por URL</span>
+            <span>Imagen o captura representativa</span>
             <input
-              type="url"
-              name="imageUrl"
-              value={formData.imageUrl}
-              onChange={handleChange}
-              placeholder="https://sitio.com/imagen.png"
+              type="file"
+              accept="image/*"
+              onChange={handleProjectImageUpload}
             />
             {errors.imageUrl ? (
               <small className="form-error">{errors.imageUrl}</small>
             ) : null}
           </label>
+
+          {formData.imageUrl ? (
+            <div className="image-preview form-field-full">
+              <img src={formData.imageUrl} alt="Vista previa del proyecto" />
+              <div>
+                <p>Vista previa de la imagen seleccionada.</p>
+                <button
+                  className="button secondary-button"
+                  type="button"
+                  onClick={handleRemoveProjectImage}
+                >
+                  Quitar imagen
+                </button>
+              </div>
+            </div>
+          ) : null}
         </div>
 
         <div className="form-actions">

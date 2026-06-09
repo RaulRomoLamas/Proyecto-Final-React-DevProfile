@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useCV } from '../context/CVContext'
+import { imageFileToDataUrl } from '../utils/imageFiles'
 import {
   validateEmail,
-  validateImageUrl,
+  validateImageSource,
   validateLength,
   validateRequired,
   validateUrl,
@@ -101,8 +102,8 @@ function buildErrors(formData) {
     errors.portfolio = 'El portafolio debe ser una URL valida.'
   }
 
-  if (formData.profileImage && !validateImageUrl(formData.profileImage)) {
-    errors.profileImage = 'La imagen de perfil debe usar una URL valida.'
+  if (formData.profileImage && !validateImageSource(formData.profileImage)) {
+    errors.profileImage = 'La imagen de perfil no es valida.'
   }
 
   return errors
@@ -153,6 +154,51 @@ function PersonalForm({ initialData }) {
       profileImage: avatarUrl,
     }))
 
+    setErrors((currentErrors) => ({
+      ...currentErrors,
+      profileImage: '',
+    }))
+    setSuccessMessage('')
+  }
+
+  const handleProfileImageUpload = async (event) => {
+    const [file] = event.target.files
+
+    if (!file) {
+      return
+    }
+
+    try {
+      const profileImage = await imageFileToDataUrl(file, {
+        maxWidth: 900,
+        maxHeight: 900,
+        quality: 0.88,
+      })
+
+      setFormData((currentData) => ({
+        ...currentData,
+        profileImage,
+      }))
+      setErrors((currentErrors) => ({
+        ...currentErrors,
+        profileImage: '',
+      }))
+      setSuccessMessage('')
+    } catch (error) {
+      setErrors((currentErrors) => ({
+        ...currentErrors,
+        profileImage: error.message,
+      }))
+    } finally {
+      event.target.value = ''
+    }
+  }
+
+  const handleRemoveProfileImage = () => {
+    setFormData((currentData) => ({
+      ...currentData,
+      profileImage: '',
+    }))
     setErrors((currentErrors) => ({
       ...currentErrors,
       profileImage: '',
@@ -323,7 +369,7 @@ function PersonalForm({ initialData }) {
         <div className="avatar-section">
           <div className="section-heading">
             <h3>Imagen de perfil</h3>
-            <p>Elige un avatar predeterminado o pega la URL de tu imagen.</p>
+            <p>Elige un avatar predeterminado o sube una imagen desde tu computadora.</p>
           </div>
 
           <div className="avatar-grid" role="list" aria-label="Avatares predeterminados">
@@ -345,13 +391,11 @@ function PersonalForm({ initialData }) {
           </div>
 
           <label className="form-field">
-            <span>URL de imagen</span>
+            <span>Subir imagen desde tu computadora</span>
             <input
-              type="url"
-              name="profileImage"
-              value={formData.profileImage}
-              onChange={handleFieldChange}
-              placeholder="https://sitio.com/imagen-perfil.jpg"
+              type="file"
+              accept="image/*"
+              onChange={handleProfileImageUpload}
             />
             {errors.profileImage ? (
               <small className="form-error">{errors.profileImage}</small>
@@ -361,7 +405,16 @@ function PersonalForm({ initialData }) {
           {formData.profileImage ? (
             <div className="image-preview">
               <img src={formData.profileImage} alt="Vista previa del perfil" />
-              <p>Vista previa de la imagen seleccionada.</p>
+              <div>
+                <p>Vista previa de la imagen seleccionada.</p>
+                <button
+                  className="button secondary-button"
+                  type="button"
+                  onClick={handleRemoveProfileImage}
+                >
+                  Quitar imagen
+                </button>
+              </div>
             </div>
           ) : null}
         </div>
