@@ -6,8 +6,7 @@ function useLocalStorage(key, initialValue) {
       const item = window.localStorage.getItem(key)
 
       return item ? JSON.parse(item) : initialValue
-    } catch (error) {
-      console.error(`Error al leer localStorage para la clave ${key}:`, error)
+    } catch {
       return initialValue
     }
   }
@@ -17,8 +16,8 @@ function useLocalStorage(key, initialValue) {
   useEffect(() => {
     try {
       window.localStorage.setItem(key, JSON.stringify(storedValue))
-    } catch (error) {
-      console.error(`Error al guardar localStorage para la clave ${key}:`, error)
+    } catch {
+      // localStorage puede fallar si el navegador restringe el almacenamiento.
     }
   }, [key, storedValue])
 

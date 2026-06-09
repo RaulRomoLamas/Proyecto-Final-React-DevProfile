@@ -1,4 +1,8 @@
 :root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #172033;
+  --border: #dbe3ef;
   --color-background: #f5f7fb;
   --color-surface: #ffffff;
   --color-primary: #2563eb;
@@ -21,8 +25,8 @@
 body {
   min-width: 320px;
   min-height: 100vh;
-  background: var(--color-background);
-  color: var(--color-text);
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -134,13 +138,6 @@ button {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
   padding: clamp(2rem, 6vw, 4rem) 0;
-}
-
-.demo-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
 }
 
 .page {
@@ -838,16 +835,16 @@ button {
   border-radius: 8px;
 }
 
-body.dark-mode .cv-preview-item {
+.dark .cv-preview-item {
   background: #111827;
 }
 
-body.dark-mode .cv-preview-links a {
+.dark .cv-preview-links a {
   background: #1e3a8a;
   color: #ffffff;
 }
 
-body.dark-mode .cv-preview-links a:hover {
+.dark .cv-preview-links a:hover {
   background: #1d4ed8;
 }
 
@@ -865,8 +862,6 @@ body.dark-mode .cv-preview-links a:hover {
     width: 100%;
   }
 
-  .demo-actions,
-  .demo-actions .button,
   .stats-grid,
   .dashboard-summary,
   .preview-actions,
